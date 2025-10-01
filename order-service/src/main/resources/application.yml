@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: order-service
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/ms_demo
+    username: ms_user
+    password: ms_pass
+    pool:
+      enabled: true
+      initial-size: 5
+      max-size: 20
+    initialization:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.r2dbc: INFO
