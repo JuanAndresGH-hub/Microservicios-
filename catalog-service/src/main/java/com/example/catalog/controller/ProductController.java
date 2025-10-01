@@ -3,6 +3,7 @@ package com.example.catalog.controller;
 import com.example.catalog.model.Product;
 import com.example.catalog.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -29,6 +30,7 @@ public class ProductController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Product> create(@Valid @RequestBody Product p) {
         return service.create(p);
     }
@@ -44,6 +46,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> delete(@PathVariable Integer id) {
         return service.delete(id);
     }

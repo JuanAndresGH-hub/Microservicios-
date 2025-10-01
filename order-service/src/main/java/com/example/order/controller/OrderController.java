@@ -2,6 +2,7 @@ package com.example.order.controller;
 
 import com.example.order.model.Order;
 import com.example.order.service.OrderService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Order> create(@RequestBody CreateOrderRequest req) {
+    public Mono<Order> create(@Valid @RequestBody CreateOrderRequest req) {
         return service.create(req.productId(), req.quantity(), req.unitPrice());
     }
 
